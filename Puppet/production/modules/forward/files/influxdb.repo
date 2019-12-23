@@ -1,0 +1,8 @@
+# This file is managed by Puppet. DO NOT EDIT.
+# influxdb
+[influxdb]
+gpgcheck = 1
+gpgkey = https://repos.influxdata.com/influxdb.key
+enabled = 1
+baseurl = https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable
+name = InfluxDB Repository - RHEL \$releasever

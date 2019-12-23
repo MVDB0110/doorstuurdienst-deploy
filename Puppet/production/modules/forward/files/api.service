@@ -1,0 +1,11 @@
+[Unit]
+Description=Hostnet BV Doorstuurdienst API
+After=multi-user.target
+
+[Service]
+Type=idle
+WorkingDirectory=/opt/doorstuurdienst
+ExecStart=/usr/bin/python3 /opt/doorstuurdienst/app.py
+
+[Install]
+WantedBy=multi-user.target

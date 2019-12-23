@@ -1,0 +1,62 @@
+# This file is managed by Puppet. DO NOT EDIT.
+# telegraf
+[global_tags]
+
+[agent]
+  interval = "10s"
+  round_interval = true
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  collection_jitter = "0s"
+  flush_interval = "10s"
+  flush_jitter = "0s"
+  precision = ""
+  debug = false
+  quiet = false
+  hostname = "<%= @hostname %>"
+  omit_hostname = false
+
+[[outputs.influxdb]]
+  urls = [ "<%= @influxdb_host %>" ]
+  database = "<%= @database_name %>"
+  timeout = "5s"
+  username = "<%= @database_user %>"
+  password = "<%= @database_password %>"
+  user_agent = "telegraf"
+  udp_payload = 512
+<% if @hostname =~ /.*fwwe.*/ %>
+# Read Apache status information (mod_status)
+[[inputs.apache]]
+  urls = ["http://localhost/server-status?auto"]
+<% end -%>
+<% if @hostname =~ /.*fwnm.*/ %>
+[[inputs.ping]]
+  interval = "30s"
+  urls = ["10.0.1.254", "10.0.2.254", "10.0.0.254"]
+  count = 4
+  ping_interval = 1.0
+  timeout = 2.0
+<% end -%>
+
+[[inputs.cpu]]
+  percpu = true
+  totalcpu = true
+  fielddrop = ["time_*"]
+
+[[inputs.disk]]
+  ignore_fs = ["tmpfs", "devtmpfs"]
+
+[[inputs.diskio]]
+  skip_serial_number = false
+
+[[inputs.kernel]]
+[[inputs.mem]]
+[[inputs.processes]]
+[[inputs.swap]]
+[[inputs.system]]
+[[inputs.net]]
+[[inputs.nstat]]
+[[inputs.interrupts]]
+[[inputs.linux_sysctl_fs]]
+[[inputs.conntrack]]
+[[inputs.internal]]

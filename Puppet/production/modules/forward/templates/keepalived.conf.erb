@@ -1,0 +1,35 @@
+# This file is managed by Puppet. DO NOT EDIT.
+# keepalived
+! Configuration File for keepalived
+global_defs {
+  notification_email {
+    youremail@yourdomain.com
+  }
+  notification_email_from haproxy1@yourdomain.com
+  smtp_server yoursmtp.yourdomain.com
+  smtp_connect_timeout 30
+  router_id haproxy
+}
+vrrp_script haproxy {
+  script "killall -0 haproxy"
+  interval 2
+  weight 2
+}
+vrrp_instance VI_1 {
+  state MASTER
+  interface eth0
+  virtual_router_id 1
+  priority <%= @priority %>
+  advert_int 1
+  smtp_alert
+  authentication {
+    auth_type PASS
+    auth_pass PASS
+  }
+  virtual_ipaddress {
+    10.0.1.254 dev eth0
+  }
+  track_script {
+    haproxy
+  }
+}

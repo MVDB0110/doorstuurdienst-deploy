@@ -1,0 +1,19 @@
+---
+version: 5
+defaults:
+  datadir: data
+  data_hash: json_data
+hierarchy:
+  - name: "API"
+    lookup_key: hiera_http
+    uri: "https://10.0.1.254:5000/v1/forwards"
+    options:
+      failure: graceful
+      use_ssl: true
+      ssl_verify: false
+      output: json
+  - name: "Per-node data (yaml version)"
+    path: "nodes/%{::trusted.certname}.yaml"
+  - name: "Other YAML hierarchy levels"
+    paths:
+      - "common.yaml"
