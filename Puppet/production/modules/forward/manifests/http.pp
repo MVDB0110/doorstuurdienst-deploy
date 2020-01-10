@@ -221,7 +221,7 @@ class forward::http (
           directories     => {
             path    => "${forward_docroot}/${value['bron']}",
             headers => [
-              "always set Strict-Transport-Security \"max-age=300; preload\"",
+              "always set Strict-Transport-Security \"max-age=2592000; preload\"",
               "always set Content-Security-Policy \"default-src 'self'; script-src 'none'; frame-src \'none\';\"",
               "always append X-Frame-Options SAMEORIGIN",
               "always set X-Content-Type-Options nosniff",
@@ -254,7 +254,7 @@ class forward::http (
           directories    => {
             path    => "${forward_docroot}/${value['bron']}",
             headers => [
-              "always set Strict-Transport-Security \"max-age=300; preload\"",
+              "always set Strict-Transport-Security \"max-age=2592000; preload\"",
               "set Content-Security-Policy \"default-src 'self' 'unsafe-inline'; script-src 'none'; child-src https://${value['doel']}/;\"",
               "always append X-Frame-Options SAMEORIGIN",
               "always set X-Content-Type-Options nosniff",
