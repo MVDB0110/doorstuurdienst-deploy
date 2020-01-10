@@ -75,7 +75,7 @@ class forward::http (
     class { 'apache::mod::http2':
     }
 
-    class { 'apache::mod::http2':
+    class { 'apache::mod::ssl':
       ssl_protocol => ['-all', '+TLSv1.2', '+TLSv1.3'],
     }
 
