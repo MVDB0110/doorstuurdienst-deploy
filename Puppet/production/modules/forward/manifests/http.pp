@@ -75,6 +75,10 @@ class forward::http (
     class { 'apache::mod::http2':
     }
 
+    class { 'apache::mod::http2':
+      ssl_protocol => ['-all', '+TLSv1.2', '+TLSv1.3'],
+    }
+
     class { 'apache::mod::rewrite':
     }
     
