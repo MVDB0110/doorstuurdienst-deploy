@@ -1,6 +1,9 @@
 # // Provider Section
 provider "openstack" {
-
+  user_name = "mvandenbrink"
+  password  = "*****"
+  auth_url = "https://keystone.openstack.eq.hostnetbv.nl:5000/v3"
+  user_domain_name = "Default"
 }
 # \\
 
