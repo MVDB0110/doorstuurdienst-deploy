@@ -51,7 +51,7 @@ resource "openstack_compute_instance_v2" "nms" {
 
 resource "openstack_compute_instance_v2" "forwardserver" {
   name                = "HN-FWWE-${count.index}"
-  image_name          = "ubuntu-1804_2019-11-25_17:28:08"
+  image_name          = "ubuntu-19.04"
   flavor_name         = "HN-1CPU-1024MiB"
   security_groups     = [openstack_networking_secgroup_v2.webservice.name]
   stop_before_destroy = true
@@ -59,7 +59,7 @@ resource "openstack_compute_instance_v2" "forwardserver" {
   count               = var.counts["forwardserver"]
 
   block_device {
-    uuid                  = "8a69e8b9-1873-4411-ba31-24785813407c"
+    uuid                  = "99455173-e27a-4639-8f15-f91ffbdc6690"
     source_type           = "image"
     volume_size           = 10
     boot_index            = 0
