@@ -68,7 +68,7 @@ class forward::http (
       server_tokens     => 'Prod',
     }
 
-    # Install Apache mod_headers, mod_http2 and mod_rewrite
+    # Install Apache mod_headers, mod_http2, mod_security, mod_status and mod_rewrite
     class { 'apache::mod::headers':
     }
 
