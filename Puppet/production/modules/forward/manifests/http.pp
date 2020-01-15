@@ -85,6 +85,9 @@ class forward::http (
     class { 'apache::mod::status':
     }
 
+    class { 'apache::mod::security':
+    }
+
     # Setup Certbot for Letsencrypt Authorization
     class { 'letsencrypt':
       email  => 'mvandenbrink@hostnet.nl',
